@@ -1,7 +1,7 @@
 class CostCodesController < ApplicationController
   def index
-    render json: [
-      {id: 1, name: 'Steel'}
-    ]
+    # 2764649
+
+    render json: get(url: "/cost_codes", query: { project_id: 274649 })
   end
 end
