@@ -18,4 +18,7 @@
 
 .idea
 *.DS_Store
+
+# Client Build
 client/node_modules
+app/assets/javascripts/generated
