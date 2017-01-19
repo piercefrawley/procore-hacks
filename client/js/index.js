@@ -7,7 +7,8 @@ import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import { Base } from './components';
+import { Base, DetailPage } from './components';
+import rootReducer from './reducers';
 
 const initialState = {};
 const emptyMiddleware = () => next => action => next(action);
@@ -20,11 +21,8 @@ logger = createLogger({
   logErrors: false,
 });
 
-// Add the reducer to your store on the `routing` key
 const store = createStore(
-  combineReducers({
-    routing: routerReducer,
-  }),
+  rootReducer,
   initialState,
   applyMiddleware(logger)
 );
@@ -38,6 +36,7 @@ $(function () {
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Base}/>
+          <Route path="detail" component={DetailPage}/>
         </Route>
       </Router>
     </Provider>,
