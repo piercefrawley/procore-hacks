@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
   def index
-    render json: [
-      {id: 1, name: 'P7 Parking Garage'}
-    ]
+    render json: projects(company_id: 7714)
   end
 end
