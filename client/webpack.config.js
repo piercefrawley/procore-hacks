@@ -8,6 +8,7 @@ module.exports = {
 
   entry: [
     './js/index.js',
+    './scss/main.scss',
   ],
   output: {
     filename: 'bundle.js',
@@ -39,7 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('../css/[name].css'),
+    new ExtractTextPlugin('./scss/[name].scss'),
   ],
   postcss: [ autoprefixer({ browsers: '> 5%'}) ]
 };

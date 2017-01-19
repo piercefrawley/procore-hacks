@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { Base } from './components';
+import '../scss/base.scss';
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(
