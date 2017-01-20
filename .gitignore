@@ -18,6 +18,8 @@
 
 .idea
 *.DS_Store
+*.swp
+.env
 
 # Client Build
 client/node_modules
