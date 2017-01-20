@@ -32,7 +32,7 @@ export default class Detail extends Component {
           for&nbsp;<span className="area-span">{ area }</span>&nbsp;vs.
           <HiddenButton onClick={click} text={project} type="project"/>
         </div>
-        <Chart />
+        <Chart { ...this.props }/>
         <div className="detail-bottom-view">
           <div>Current Price</div>
           <div className="labels">
@@ -51,7 +51,7 @@ export default class Detail extends Component {
                 </div>
             </div>
             <div className="diff-label">
-                { diff >= 0? 
+                { diff >= 0?
                   <img className="label-icon" src="/assets/Arrowdown.png" alt="Project" height="90" width="88"/>:
                   <img className="label-icon" src="/assets/Arrowup.png" alt="Project" height="90" width="88"/>
                 }

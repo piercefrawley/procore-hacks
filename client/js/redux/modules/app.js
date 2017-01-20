@@ -11,6 +11,10 @@ const { actions, ...module } = createModule({
     collections: {
       projects: [],
       costCodes: [],
+      stats: {
+        project_average: [],
+        regional_average: [],
+      },
     },
     session: {
       tab: 'project',
@@ -79,33 +83,11 @@ const fetchStatsData = () => async (dispatch, getState) => {
   const { session: { project, costCode } } = app.toJS();
 
   dispatch(actions.setLoading(true));
-
-  const fetch = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({
-        stats: [
-          { "date": "2016-1-1", "price": 1012.20 },
-          { "date": "2016-2-5", "price": 3006.10 },
-          { "date": "2016-3-2", "price": 2002.30 },
-          { "date": "2016-4-2", "price": 1403.20 },
-          { "date": "2016-5-2", "price": 2702.10 },
-          { "date": "2016-6-2", "price": 2305.40 },
-          { "date": "2016-7-2", "price": 3202.90 },
-          { "date": "2016-8-2", "price": 2009.50 },
-          { "date": "2016-9-2", "price": 2003.30 },
-          { "date": "2016-10-2", "price": 2008.30 },
-          { "date": "2016-11-2", "price": 2002.10 },
-          { "date": "2016-12-2", "price": 2043.20 },
-        ]
-      });
-    }, 1000);
-  });
-
-  fetch.then(
-    payload => dispatch(actions.fetchStatsDataResolve(payload))
-  ).catch(
-    error => console.log('error fetching stats')
-  );
+  debugger;
+  fetch(`/api/stats?cost_code_id=${costCode.id}&project_id=${project.id}`)
+    .then(response => response.json())
+    .then(json => dispatch(actions.fetchStatsDataResolve({ stats: json })))
+    .catch(error => console.log('error fetching cost codes'));
 }
 
 const fetchCostCodes = (project_id) => async (dispatch, getState) => {
