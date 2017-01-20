@@ -25,7 +25,7 @@ class StatsController < ApplicationController
       @regional_stats =
         if project['state_code'].present? && cost_code['full_code'].present?
           run_sql(regional_sql(region: project['state_code'], sortable_cost_code: cost_code['full_code'])).
-            map { |row| {date:row[1].to_date.iso8601, price: row[0].to_f} }
+            map { |row| {date:row[1].to_date.iso8601, price: row[0].to_f/1000} }
         else
           []
         end
