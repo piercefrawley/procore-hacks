@@ -7,7 +7,7 @@ import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import { Base, DetailPage } from './components';
+import { Base, DetailPage, Chart } from './components';
 import rootReducer from './reducers';
 
 const initialState = {};
@@ -37,6 +37,7 @@ $(function () {
         <Route path="/" component={App}>
           <IndexRoute component={Base}/>
           <Route path="detail" component={DetailPage}/>
+          <Route path="chart" component={Chart}/>
         </Route>
       </Router>
     </Provider>,
