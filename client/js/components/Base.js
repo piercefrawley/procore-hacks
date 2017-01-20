@@ -3,10 +3,25 @@ import { connectModule } from 'redux-modules';
 import Select from 'react-select';
 import DetailPage from './DetailPage';
 import module from '../redux/modules/app';
+import cx from 'classnames';
 
 class Base extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true
+    }
+  }
+
   componentDidMount() {
     this.props.actions.fetchProjects();
+    this.loaded = setTimeout(this.load.bind(this), 2000);
+  }
+
+  load() {
+    this.setState({
+      isLoading: false
+    })
   }
 
   render() {
@@ -14,9 +29,15 @@ class Base extends Component {
       app: { costCode, costCodes, loading, project, projects, tab },
       actions: { fetchCostCodes, onChangeProject, onChangeCostCode },
     } = this.props;
+    const BaseClass = cx({ 'flex-container': true, 'titleloaded': !this.state.isLoading });
 
     return (
-      <div className="flex-container">
+      <div className={BaseClass}>
+        <div id="titleloader-wrapper">
+          <img id="titleloader" src="/assets/Title.png" alt="Loading" />
+          <div className="titleloader-section titlesection-left"></div>
+          <div className="titleloader-section titlesection-right"></div>
+        </div>
         {
           tab === 'project' && (
             <div className="project-view">

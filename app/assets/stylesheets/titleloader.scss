@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Lato-Regular';
+  src: font-url('Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#titleloader-wrapper {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 19000;
+}
+
+#titleloader {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  z-index: 1001;
+}
+
+
+#titleloader-wrapper {
+  .titleloader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    z-index: 1000;
+    background: #0D357B;
+    transform: translateX(0);
+
+    &.titlesection-left {
+        left: 0;
+    }
+
+    &.titlesection-right {
+        right: 0;
+    }
+  }
+}
+// After loaded
+.titleloaded {
+  #titleloader-wrapper {
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: all .3s 1s ease-out;
+
+    .titleloader-section {
+      &.titlesection-left {
+        transform: translateX(-100%);
+        transition: all .7s .3s cubic-bezier(.645, .045, .355, 1);
+      }
+
+      &.titlesection-right {
+        transform: translateX(100%);
+        transition: all .7s .3s cubic-bezier(.645, .045, .355, 1);
+      }
+    }
+  }
+
+  #titleloader {
+    opacity: 0;
+    transition: all .3s ease-out;
+  }
+}
+
