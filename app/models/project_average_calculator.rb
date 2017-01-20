@@ -8,7 +8,7 @@ class ProjectAverageCalculator
 
   def execute
     averages = []
-    average_per_month.keys.each do |key|
+    average_per_month.keys.sort.each do |key|
       averages << { date: Date.new(2016, key.to_f, 1).iso8601, price: average_per_month[key] }
     end
 
