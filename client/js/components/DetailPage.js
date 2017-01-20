@@ -16,6 +16,11 @@ export default class Detail extends Component {
     const material = "Structure Metals";
     const project = "P7 Parking Garage";
     const area = "California";
+    const areaprice = 160;
+    const projectprice = 50;
+    const diff = areaprice - projectprice;
+    const diffClass = cx({ 'save': diff >= 0, 'nosave': diff < 0 });
+
     const click = () => console.log('Clicked');
 
     return (
@@ -29,9 +34,33 @@ export default class Detail extends Component {
         </div>
         <Chart />
         <div className="detail-bottom-view">
-          <div className="costcode-label"></div>
-          <div className="project-label"></div>
-          <div className="comparison-label"></div>
+          <div>Current Price</div>
+          <div className="labels">
+            <div className="area-label">
+                <img className="label-icon" src="/assets/California.png" alt="Location"/>
+                <div className="label-text">
+                  <div className="price">{"$"+areaprice}</div>
+                  <div className="area">{area}</div>
+                </div>
+            </div>
+            <div className="project-label">
+                <img className="label-icon" src="/assets/Projectflag.png" alt="Project"/>
+                <div className="label-text">
+                  <div className="price">{"$"+projectprice}</div>
+                  <div className="project">{project}</div>
+                </div>
+            </div>
+            <div className="diff-label">
+                { diff >= 0? 
+                  <img className="label-icon" src="/assets/Arrowdown.png" alt="Project" height="90" width="88"/>:
+                  <img className="label-icon" src="/assets/Arrowup.png" alt="Project" height="90" width="88"/>
+                }
+                <div className="label-text">
+                  <div className="price">{"$"+diff}</div>
+                  <div className={diffClass}>{diff > 0? "Cheaper": "More Expensive"}</div>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     )
