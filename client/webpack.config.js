@@ -7,9 +7,11 @@ module.exports = {
   devtool : 'eval-source-map',
 
   entry: [
+    'babel-polyfill',
     './js/index.js',
     './scss/main.scss',
   ],
+
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '../app/assets/javascripts/generated/bundle'),

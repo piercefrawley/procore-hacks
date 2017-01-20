@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Select from 'react-select';
 
 export default class ProjectSelect extends Component {
-
   constructor() {
     super();
     this.state = { value: "one" };
@@ -17,6 +15,7 @@ export default class ProjectSelect extends Component {
 
     const logChange = val => {
       this.setState({value: val.value});
+      this.props.onChange('costCodeSelect');
     }
 
     return (
