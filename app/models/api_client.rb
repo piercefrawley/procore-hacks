@@ -63,7 +63,7 @@ class ApiClient
 
   def headers
     {
-      "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4ODE4NDR9.AUHHsjvaTWN9lIYlHRH0iD3KX9tweORqIuqHLeUUBWvZ3v5zsIytDDWGvSgNe09PVWJ6MwtTL1Gn6JsHdMhiDIuwANRDcwOa3-X2bEhQpjw7sPPdIldF7QGXblMp4PMF7l2noxBMnPD3GX51Ha1Zgt2vVCa5xyMnFnxc3GHyJye7CFEv",
+      "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ5MzYwMzJ9.AViaT_HPjImx-4iQ57dgMoCdd5RrMQVTaZ1Tuyt3rGcozhzbR2c0pj2em-Dn8p-m49ZfZXufRFlOisEDpxGy-5JRAXw-lTFTKCHAcQpU5PCCiT-jBYFzSBgfg7CarTZurpBWo-K6V_NG3ejg5v7EjAEzJEJFNAQxYRH_7R28T4usN7lq",
       "Content-Type" => "application/json",
       "Accepts" => "application/json",
     }

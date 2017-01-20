@@ -1,14 +1,13 @@
 class StatsController < ApplicationController
   def index
-    company_id = (params[:company_id] || 7714).to_int
-    project_id = (params[:project_id] || 274649).to_int
+    company_id = (params[:company_id] || 7714).to_i
+    project_id = (params[:project_id] || 274649).to_i
     cost_code_id = (params[:cost_code_id_id] || 101336026).to_int
+    project_average = ProjectAverageCalculator.new(project_id, cost_code_id).execute
 
     render json: {
       regional_average: regional_stats(company_id, project_id, cost_code_id),
-      project: [
-        {date: Date.new(2016,1,1).iso8601, price: 600.50},
-      ]
+      project: project_average
     }
   end
 
@@ -48,5 +47,4 @@ class StatsController < ApplicationController
       AND cost_codes.sortable_code = '#{sortable_cost_code}'
     GROUP BY date_trunc('month', line_items.updated_at)"
   end
-
 end
