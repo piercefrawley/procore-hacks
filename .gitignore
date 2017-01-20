@@ -18,4 +18,5 @@
 
 .idea
 *.DS_Store
+*.swp
 client/node_modules

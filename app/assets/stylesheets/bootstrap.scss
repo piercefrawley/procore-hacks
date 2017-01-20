@@ -1,4 +1,16 @@
+* { padding: 0; margin: 0; }
+
+html, body {
+  height: 100%;
+  background: #0D357B;
+}
+
+#root, .app {
+  height: 100%;
+}
+
 .flex-container {
+    height: 100%;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -10,6 +22,7 @@
     -webkit-flex-flow: row wrap;
     justify-content: space-around;
 }
+
 .flex-item {
     background: tomato;
     padding: 5px;
