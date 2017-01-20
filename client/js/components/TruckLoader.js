@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class TruckSpinner extends Component {
   render() {
     const { costCode } = this.props;
-    console.log(costCode);
+
     return (
       <div id="loader-wrapper">
         <img id="loader" src="/assets/truckloader.gif" alt="Loading" />

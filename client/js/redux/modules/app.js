@@ -82,8 +82,6 @@ const fetchStatsData = () => async (dispatch, getState) => {
   const { app } = getState();
   const { session: { project, costCode } } = app.toJS();
 
-  dispatch(actions.setLoading(true));
-  debugger;
   fetch(`/api/stats?cost_code_id=${costCode.id}&project_id=${project.id}`)
     .then(response => response.json())
     .then(json => dispatch(actions.fetchStatsDataResolve({ stats: json })))

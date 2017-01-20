@@ -7,6 +7,7 @@ import cx from 'classnames';
 export default class Detail extends Component {
   componentDidMount() {
     const { actions } = this.props;
+    actions && actions.setLoading(true);
     actions && actions.fetchStatsData();
   }
 
