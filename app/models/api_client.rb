@@ -37,6 +37,14 @@ class ApiClient
     get(url: "/cost_codes", query: { project_id: project_id })
   end
 
+  def purchase_order_contracts(project_id:)
+    get(url: "/purchase_order_contracts", query: { project_id: project_id })
+  end
+
+  def purchase_line_items(project_id:, poc_id:)
+    get(url: "/purchase_order_contracts/#{poc_id}/line_items", query: { project_id: project_id })
+  end
+
   def get(url:, query: {})
     with_response_handling do
       time_start = Time.new

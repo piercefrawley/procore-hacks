@@ -3,6 +3,7 @@ class ProjectAverageCalculator
     @project_id = project_id
     @cost_code_id = cost_code_id
     @api_client = api_client
+    @poc_line_items = {}
   end
 
   def execute
@@ -41,7 +42,7 @@ class ProjectAverageCalculator
   def purchase_order_line_items
     line_items = []
     purchase_order_ids.uniq.each do |id|
-      line_items << @api_client.get(url: "/purchase_order_contracts/#{id}/line_items", query: { project_id: @project_id })
+      line_items << poc_line_items(id)
     end
     line_items
   end
@@ -56,6 +57,14 @@ class ProjectAverageCalculator
   end
 
   def purchase_orders_request
-    @api_client.get(url: "/purchase_order_contracts", query: { project_id: @project_id })
+    @purchase_orders_request ||= @api_client.purchase_order_contracts(project_id: @project_id)
+  end
+
+  def poc_line_items(poc_id)
+    if !@poc_line_items.has_key? poc_id
+      @poc_line_items[poc_id] = @api_client.purchase_line_items(poc_id: poc_id, project_id: @project_id)
+    end
+
+    @poc_line_items[poc_id]
   end
 end
