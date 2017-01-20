@@ -95,7 +95,7 @@ export default class Chart extends Component {
         chart: {
           backgroundColor: '#0D357B',
           width: '1250',
-          height: '500',
+          height: '400',
         },
         credits: {
           enabled: false,
