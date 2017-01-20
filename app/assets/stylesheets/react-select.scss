@@ -37,7 +37,7 @@
   display: table;
   border-spacing: 0;
   border-collapse: separate;
-  height: 36px;
+  height: 80px;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -74,7 +74,7 @@
   bottom: 0;
   color: #aaa;
   left: 0;
-  line-height: 34px;
+  line-height: 80px;
   padding-left: 10px;
   padding-right: 10px;
   position: absolute;
@@ -88,6 +88,7 @@
 .has-value.Select--single > .Select-control .Select-value .Select-value-label,
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
   color: #333;
+  font-size: 40px;
 }
 .has-value.Select--single > .Select-control .Select-value a.Select-value-label,
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
@@ -116,7 +117,7 @@
   cursor: default;
   display: inline-block;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 50px;
   margin: 0;
   outline: none;
   line-height: 14px;
@@ -254,6 +255,7 @@
   cursor: pointer;
   display: block;
   padding: 8px 10px;
+  font-size:25px;
 }
 .Select-option:last-child {
   border-bottom-right-radius: 4px;

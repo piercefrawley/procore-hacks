@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Lato-Regular';
+  src: font-url('Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.flyer {
+  height: auto;
+  font-family: 'Lato-Regular';
+  margin: 43px 55px 0 55px;
+  text-align: center;
+  display: inherit;
+  font-size: 24pt;
+  color: #fff;
+
+  .item-class {
+    cursor: pointer;
+    border-radius: 12px;
+    height: auto;
+    margin: 0 5px;
+    padding: 0 5px;
+    text-align: center;
+    color: #939393;
+    .hiddentext {
+      color: #0D357B;
+      font-size: 12px;
+      display: none;
+    }
+  }
+
+
+  .project-class {
+    cursor: pointer;
+    border-radius: 12px;
+    height: auto;
+    margin: 0 5px;
+    padding: 0 5px;
+    text-align: center;
+    color: #ff6868;
+    .hiddentext {
+      color: #0D357B;
+      font-size: 12px;
+      display: none;
+    }
+  }
+}
+
+.item-class:hover {
+  background-color: #AAA;
+  .showntext {
+    color: #fff;
+  }
+  .hiddentext{
+    display: block;
+  }
+}
+
+
+.project-class:hover {
+  background-color: #fd696b;
+  .showntext {
+    color: #fff;
+  }
+  .hiddentext{
+    display: block;
+  }
+}
+
+.area-span {
+  color: #ffd56e;
+}

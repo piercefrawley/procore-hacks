@@ -1,17 +1,54 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import ReactDOM from 'react-dom';
-=======
 import { connectModule } from 'redux-modules';
+import Select from 'react-select';
+import DetailPage from './DetailPage';
 import module from '../redux/modules/app';
->>>>>>> 1d825d1261f620dbde3acfa0409829a07ecc4f4a
 
 class Base extends Component {
+  componentDidMount() {
+    this.props.actions.fetchProjects();
+    this.props.actions.fetchCostCodes();
+  }
+
   render() {
-    console.log(this.props);
+    const {
+      app: { costCode, costCodes, project, projects, tab },
+      actions: { onChangeProject, onChangeCostCode },
+    } = this.props;
+
     return (
       <div className="flex-container">
-        Hello React
+        {
+          tab === 'project' && (
+            <Select
+              name="projectSelect"
+              searchable={true}
+              value={project}
+              labelKey="name"
+              valueKey="id"
+              options={projects}
+              onChange={onChangeProject}
+            />
+          )
+        }
+        {
+          tab === 'costCode' && (
+            <Select
+              name="costCodeSelect"
+              searchable={true}
+              value={costCode}
+              labelKey="name"
+              valueKey="id"
+              options={costCodes}
+              onChange={onChangeCostCode}
+            />
+          )
+        }
+        {
+          tab === 'detail' && (
+            <DetailPage { ...this.props } />
+          )
+        }
       </div>
     );
   }
