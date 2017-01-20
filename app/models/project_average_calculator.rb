@@ -1,7 +1,8 @@
 class ProjectAverageCalculator
-  def initialize(project_id, cost_code_id)
+  def initialize(project_id:, cost_code_id:, api_client:)
     @project_id = project_id
     @cost_code_id = cost_code_id
+    @api_client = api_client
   end
 
   def execute
@@ -40,7 +41,7 @@ class ProjectAverageCalculator
   def purchase_order_line_items
     line_items = []
     purchase_order_ids.uniq.each do |id|
-      line_items << ApiClient.instance.get(url: "/purchase_order_contracts/#{id}/line_items", query: { project_id: @project_id })
+      line_items << @api_client.get(url: "/purchase_order_contracts/#{id}/line_items", query: { project_id: @project_id })
     end
     line_items
   end
@@ -55,6 +56,6 @@ class ProjectAverageCalculator
   end
 
   def purchase_orders_request
-    ApiClient.instance.get(url: "/purchase_order_contracts", query: { project_id: @project_id })
+    @api_client.get(url: "/purchase_order_contracts", query: { project_id: @project_id })
   end
 end

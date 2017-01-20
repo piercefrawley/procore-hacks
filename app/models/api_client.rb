@@ -1,5 +1,6 @@
 class ApiClient
   ApiError = Class.new(StandardError)
+  attr_writer :logger
 
   def self.instance
     @instance ||= ApiClient.new
@@ -38,7 +39,11 @@ class ApiClient
 
   def get(url:, query: {})
     with_response_handling do
-      HTTParty.get(base_api_url + url, query: query, headers: headers)
+      time_start = Time.new
+      result = HTTParty.get(base_api_url + url, query: query, headers: headers)
+      time_end = Time.new
+      @logger.debug "GET '#{url}' in #{(time_end - time_start) * 1000}ms" if @logger.present?
+      result
     end
   end
 
@@ -63,14 +68,14 @@ class ApiClient
 
   def headers
     {
-      "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ5NDYxMzN9.AO_fMXevFD-2eHANEAK64eb5GdjKsVtECoUbxEDxgeKUUiufh6JguV5nichAe81Pm9U_BKN00_3Rme_8vi-k6HwtAPzVeXixXaBn1oIojoZYATSunx7uRTscOmgRYQ3CAG84mNdZbuBh3E3Vqo4vQIyIbeCAEfWmcslJrhL9aByWZv56",
+      "Authorization" => "Bearer #{token}",
       "Content-Type" => "application/json",
       "Accepts" => "application/json",
     }
   end
 
   def token
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4ODE4NDR9.AUHHsjvaTWN9lIYlHRH0iD3KX9tweORqIuqHLeUUBWvZ3v5zsIytDDWGvSgNe09PVWJ6MwtTL1Gn6JsHdMhiDIuwANRDcwOa3-X2bEhQpjw7sPPdIldF7QGXblMp4PMF7l2noxBMnPD3GX51Ha1Zgt2vVCa5xyMnFnxc3GHyJye7CFEv"
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ5NDYxMzN9.AO_fMXevFD-2eHANEAK64eb5GdjKsVtECoUbxEDxgeKUUiufh6JguV5nichAe81Pm9U_BKN00_3Rme_8vi-k6HwtAPzVeXixXaBn1oIojoZYATSunx7uRTscOmgRYQ3CAG84mNdZbuBh3E3Vqo4vQIyIbeCAEfWmcslJrhL9aByWZv56"
     # if access_token.expired?
     #   self.access_token = access_token.refresh!
     # else
