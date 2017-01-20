@@ -1,8 +1,7 @@
 login: &login
   adapter: postgresql
   username: procore_db
-  password: kqi0dbgtld2MifekZcucbkya
-  #<%= ENV['POSTGRES_DB_PASSWORD'] %>
+  password: <%= ENV['POSTGRES_DB_PASSWORD'] %>
 
 # DB1.DEVELOPER
 development:
