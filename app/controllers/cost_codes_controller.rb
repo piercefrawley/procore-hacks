@@ -1,7 +1,6 @@
 class CostCodesController < ApplicationController
   def index
-    # 2764649
-
-    render json: get(url: "/cost_codes", query: { project_id: 274649 })
+    project_id = (params[:project_id] || 274649).to_int
+    render json: ApiClient.instance.cost_codes(project_id: project_id)
   end
 end
