@@ -1,30 +1,45 @@
 class StatsController < ApplicationController
   def index
-    company_id = (params[:company_id] || 7714).to_i
-    project_id = (params[:project_id] || 274649).to_i
-    cost_code_id = (params[:cost_code_id_id] || 101336026).to_int
-    project_average = ProjectAverageCalculator.new(project_id, cost_code_id).execute
+    project_average = ProjectAverageCalculator.new(project_id: project_id, cost_code_id: cost_code_id, api_client: api_client).execute
 
     render json: {
-      regional_average: regional_stats(company_id, project_id, cost_code_id),
-      project: project_average
+      regional_average: regional_stats,
+      project_average: project_average,
+      _description: {
+        cost_code: cost_code['name'],
+        project: last_stats(project_average, project['name']),
+        region: last_stats(regional_stats, project['state_code']),
+      }
     }
   end
 
   private
 
-  def regional_stats(company_id, project_id, cost_code_id)
-    region = ApiClient.instance.project(company_id: company_id, project_id: project_id)['state_code']
-    sortable_code = ApiClient.instance.cost_code(project_id: project_id, cost_code_id: cost_code_id)['full_code']
+  def last_stats(bucket, name)
+    last_item = if bucket.blank? then {} else bucket.last end
+    {name: name, last_date: last_item[:date], last_price: last_item[:price]}
+  end
 
-    if region.present? && sortable_code.present?
-      run_sql(regional_sql(region: region, sortable_cost_code: sortable_code)).
-        map do |row|
-        {date:row[1].to_date.iso8601, price: row[0]}
-      end
-    else
-      []
+  def regional_stats
+    if @regional_stats.blank?
+      @regional_stats =
+        if project['state_code'].present? && cost_code['full_code'].present?
+          run_sql(regional_sql(region: project['state_code'], sortable_cost_code: cost_code['full_code'])).
+            map { |row| {date:row[1].to_date.iso8601, price: row[0].to_f} }
+        else
+          []
+        end
     end
+
+    @regional_stats
+  end
+
+  def project
+    @project ||= ApiClient.instance.project(company_id: company_id, project_id: project_id)
+  end
+
+  def cost_code
+    @cost_code ||= api_client.cost_code(project_id: project_id, cost_code_id: cost_code_id)
   end
 
   def run_sql(sql)
@@ -44,7 +59,8 @@ class StatsController < ApplicationController
       1=1
       AND projects.active
       AND projects.state_code = '#{region}'
-      AND cost_codes.sortable_code = '#{sortable_cost_code}'
-    GROUP BY date_trunc('month', line_items.updated_at)"
+      AND replace(cost_codes.sortable_code, ' ', '') = '#{sortable_cost_code}'
+    GROUP BY date_trunc('month', line_items.updated_at)
+    ORDER BY date_trunc('month', line_items.updated_at) ASC"
   end
 end
