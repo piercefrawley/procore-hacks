@@ -18,5 +18,13 @@
 
 .idea
 *.DS_Store
+*.swp
+.env
+
+# Client Build
 client/node_modules
+<<<<<<< HEAD
 app/assets/javascripts/generated/bundle/bundle.js
+=======
+app/assets/javascripts/generated
+>>>>>>> 1d825d1261f620dbde3acfa0409829a07ecc4f4a
