@@ -43,7 +43,9 @@ const { actions, ...module } = createModule({
     fetchStatsDataResolve: {
       middleware: [],
       reducer: (state, { payload: { stats } }) =>
-      state.setIn(['collections', 'stats'], stats),
+      state
+        .setIn(['collections', 'stats'], stats)
+        .setIn(['session', 'loading'], false),
     },
     onChangeProject: {
       middleware: [],
@@ -59,12 +61,21 @@ const { actions, ...module } = createModule({
           .setIn(['session', 'costCode'], payload)
           .setIn(['session', 'tab'], 'detail'),
     },
+    setLoading: {
+      middleware: [],
+      reducer: (state, { payload }) => {
+        return state.setIn(['session', 'loading'], payload)
+      },
+    }
   },
 });
 
 const fetchStatsData = () => async (dispatch, getState) => {
   const { app } = getState();
   const { session: { project, costCode } } = app.toJS();
+
+  dispatch(actions.setLoading(true));
+
   const fetch = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
@@ -83,7 +94,7 @@ const fetchStatsData = () => async (dispatch, getState) => {
           { "date": "2016-12-2", "price": 2043.20 },
         ]
       });
-    }, 1000);
+    }, 5000);
   });
 
   fetch.then(

@@ -12,7 +12,7 @@ class Base extends Component {
 
   render() {
     const {
-      app: { costCode, costCodes, project, projects, tab },
+      app: { costCode, costCodes, loading, project, projects, tab },
       actions: { onChangeProject, onChangeCostCode },
     } = this.props;
 
