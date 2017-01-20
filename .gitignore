@@ -18,6 +18,7 @@
 
 .idea
 *.DS_Store
+*.swp
 
 # Client Build
 client/node_modules
