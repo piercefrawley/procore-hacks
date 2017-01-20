@@ -1,7 +1,8 @@
 import { createModule, middleware } from 'redux-modules';
 import { fromJS, List } from 'immutable';
-
 import { PropTypes } from 'react';
+import 'whatwg-fetch';
+
 const  { shape, string, number } = PropTypes;
 
 const { actions, ...module } = createModule({
@@ -33,12 +34,17 @@ const { actions, ...module } = createModule({
     fetchProjectResolve: {
       middleware: [],
       reducer: (state, { payload: { projects } }) =>
-        state.setIn(['collections', 'projects'], projects),
+        state
+          .setIn(['collections', 'projects'], projects)
+          .setIn(['session', 'loading'], false),
     },
     fetchCostCodesResolve: {
       middleware: [],
-      reducer: (state, { payload: { costCode } }) =>
-        state.setIn(['collections', 'costCodes'], costCode),
+      reducer: (state, { payload: { costCodes } }) =>
+        state
+          .setIn(['collections', 'costCodes'], costCodes)
+          .setIn(['session', 'tab'], 'costCode')
+          .setIn(['session', 'loading'], false),
     },
     fetchStatsDataResolve: {
       middleware: [],
@@ -50,9 +56,7 @@ const { actions, ...module } = createModule({
     onChangeProject: {
       middleware: [],
       reducer: (state, { payload }) =>
-        state
-          .setIn(['session', 'project'], payload)
-          .setIn(['session', 'tab'], 'costCode'),
+        state.setIn(['session', 'project'], payload),
     },
     onChangeCostCode: {
       middleware: [],
@@ -104,32 +108,22 @@ const fetchStatsData = () => async (dispatch, getState) => {
   );
 }
 
-const fetchProjects = () => async (dispatch, getState) => {
-  const fetch = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({ projects: [{ id: 1, name: 'Fake Project' }] });
-    }, 1000);
-  });
+const fetchCostCodes = (project_id) => async (dispatch, getState) => {
+  dispatch(actions.setLoading(true));
 
-  fetch.then(
-    payload => dispatch(actions.fetchProjectResolve(payload))
-  ).catch(
-    error => console.log('error fetching projects')
-  );
+  fetch(`/api/cost_codes?project_id=${project_id}`)
+    .then(response => response.json())
+    .then(json => dispatch(actions.fetchCostCodesResolve({ costCodes: json })))
+    .catch(error => console.log('error fetching cost codes'));
 }
 
-const fetchCostCodes = () => async (dispatch, getState) => {
-  const fetch = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({ costCode: [{ id: 1, name: 'Fake Cost Code' }] });
-    }, 1000);
-  });
+const fetchProjects = () => async (dispatch, getState) => {
+  dispatch(actions.setLoading(true));
 
-  fetch.then(
-    payload => dispatch(actions.fetchCostCodesResolve(payload))
-  ).catch(
-    error => console.log('error fetching cost codes')
-  );
+  fetch('/api/projects')
+    .then(response => response.json())
+    .then(json => dispatch(actions.fetchProjectResolve({ projects: json })))
+    .catch(error => console.log('error fetching projects'));
 }
 
 export default {

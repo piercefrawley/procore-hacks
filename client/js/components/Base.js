@@ -7,13 +7,12 @@ import module from '../redux/modules/app';
 class Base extends Component {
   componentDidMount() {
     this.props.actions.fetchProjects();
-    this.props.actions.fetchCostCodes();
   }
 
   render() {
     const {
       app: { costCode, costCodes, loading, project, projects, tab },
-      actions: { onChangeProject, onChangeCostCode },
+      actions: { fetchCostCodes, onChangeProject, onChangeCostCode },
     } = this.props;
 
     return (
@@ -25,12 +24,22 @@ class Base extends Component {
               <Select
                 name="projectSelect"
                 searchable={true}
+                isLoading={loading}
                 value={project}
                 labelKey="name"
                 valueKey="id"
                 options={projects}
-                onChange={onChangeProject}
+                onChange={val => {
+                  onChangeProject(val);
+                  fetchCostCodes(val.id);
+                }}
               />
+              {project.id && (
+                <p>
+                  <span>Dope, your project's in </span>
+                  <span style={{ color: '#ffd56e' }}>California</span>
+                </p>
+              )}
             </div>
           )
         }
@@ -41,6 +50,7 @@ class Base extends Component {
               <Select
                 name="costCodeSelect"
                 searchable={true}
+                isLoading={loading}
                 value={costCode}
                 labelKey="name"
                 valueKey="id"

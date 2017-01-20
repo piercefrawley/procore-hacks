@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from './Chart';
-import TruckSpinner from './TruckLoader';
+import TruckLoader from './TruckLoader';
 import HiddenButton from './HiddenButton';
 import cx from 'classnames';
 
@@ -11,7 +11,7 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { app: { loading } } = this.props;
+    const { app: { costCode, loading } } = this.props;
     const DetailClass = cx({ 'flex-container': true, 'loaded': !loading });
     const material = "Structure Metals";
     const project = "P7 Parking Garage";
@@ -20,7 +20,7 @@ export default class Detail extends Component {
 
     return (
       <div className={DetailClass}>
-        <TruckSpinner />
+        <TruckLoader costCode={costCode} />
         <div className="flyer">
           Average price of
           <HiddenButton onClick={click} text={material} type="item"/>
