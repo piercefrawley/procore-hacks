@@ -12,7 +12,7 @@ export default class Detail extends Component {
   }
 
   componentDidMount() {
-    this.loaded = setTimeout(this.load.bind(this), 1000);
+    this.loaded = setTimeout(this.load.bind(this), 4000);
   }
 
   load() {
