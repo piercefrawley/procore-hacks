@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { Base, DetailPage, ProjectSelect } from './components';
-import rootReducer from './reducers';
+import rootReducer from './redux';
 
 const initialState = {};
 const emptyMiddleware = () => next => action => next(action);
