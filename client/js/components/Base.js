@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
 import { connectModule } from 'redux-modules';
-import CostCodeSelect from './CostCodeSelect';
+import Select from 'react-select';
 import DetailPage from './DetailPage';
-import ProjectSelect from './ProjectSelect';
 import module from '../redux/modules/app';
 
 class Base extends Component {
   componentDidMount() {
     this.props.actions.fetchProjects();
+    this.props.actions.fetchCostCodes();
   }
 
   render() {
     const {
-      app: { projects, tab },
-      actions: { onSumbitProject, onSumbitCostCode },
+      app: { costCode, costCodes, project, projects, tab },
+      actions: { onChangeProject, onChangeCostCode },
     } = this.props;
 
     return (
       <div className="flex-container">
         {
-          tab === 'projectSelect' && (
-            <ProjectSelect
-              {...{
-                tab,
-                onChange: onSumbitProject,
-              }}
+          tab === 'project' && (
+            <Select
+              name="projectSelect"
+              searchable={true}
+              value={project}
+              labelKey="name"
+              valueKey="id"
+              options={projects}
+              onChange={onChangeProject}
             />
           )
         }
         {
-          tab === 'costCodeSelect' && (
-            <CostCodeSelect {...{ tab }} />
+          tab === 'costCode' && (
+            <Select
+              name="costCodeSelect"
+              searchable={true}
+              value={costCode}
+              labelKey="name"
+              valueKey="id"
+              options={costCodes}
+              onChange={onChangeCostCode}
+            />
           )
         }
         {
