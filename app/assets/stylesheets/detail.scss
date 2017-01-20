@@ -85,6 +85,10 @@
   color: #ffd56e;
 }
 
+.costcode-chart {
+  margin-left: 55px;
+}
+
 .detail-bottom-view {
   width: 100%;
   display: block;
@@ -143,7 +147,7 @@
     -webkit-flex-direction: row;
     flex-direction: row;
     margin: 0 10px;
-    width: 35%;
+    width: 30%;
     border-radius: 8px;
     border: 5px solid #ff6868;
     padding: 10px;
@@ -173,7 +177,7 @@
     -webkit-flex-direction: row;
     flex-direction: row;
     margin: 0 10px;
-    width: 25%;
+    width: 30%;
     border-radius: 8px;
     border: 5px solid #4dc489;
     padding: 10px;

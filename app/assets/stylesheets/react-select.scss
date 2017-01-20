@@ -57,7 +57,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 }
 .Select-control:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -102,8 +102,13 @@
 }
 .has-value.Select--single > .Select-control .Select-value .Select-value-label,
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
-  color: #333;
-  font-size: 40px;
+  display: block;
+  text-align: center;
+  font-family: 'Lato-Regular';
+  font-size: 30pt;
+  color: #fff;
+  height: 120px;
+  padding-top: 20px;
 }
 .has-value.Select--single > .Select-control .Select-value a.Select-value-label,
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
@@ -242,7 +247,9 @@
   }
 }
 .Select-menu-outer {
+  overflow-y:hidden;
   padding-top: 5px;
+  padding-bottom: 5px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   background-color: #32599c;
@@ -255,7 +262,7 @@
   position: absolute;
   top: 100% - 5;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   font-family: 'Lato-Regular';
   font-size: 30pt;
   color: #fff;
@@ -267,7 +274,8 @@
 }
 .Select-option {
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: #32599c;
+  color: #333;
   cursor: pointer;
   display: block;
   padding: 8px 10px;

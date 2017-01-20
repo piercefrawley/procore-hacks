@@ -16,4 +16,5 @@
  *= require base
  *= require loader
  *= require detail
+ *= require titleloader
  */
