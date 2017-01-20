@@ -52,7 +52,7 @@ const { actions, ...module } = createModule({
       reducer: (state, { payload }) =>
         state
           .setIn(['session', 'costCode'], payload)
-          .setIn(['session', 'tab'], 'project'),
+          .setIn(['session', 'tab'], 'detail'),
     },
   },
 });
