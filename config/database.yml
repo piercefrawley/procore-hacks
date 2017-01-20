@@ -1,25 +1,24 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+login: &login
+  adapter: postgresql
+  username: procore_db
+  password: kqi0dbgtld2MifekZcucbkya
+  #<%= ENV['POSTGRES_DB_PASSWORD'] %>
 
+# DB1.DEVELOPER
 development:
-  <<: *default
-  database: db/development.sqlite3
+  <<: *login
+  database: procore_lite1 # refresh on monday
+#  database: procore_lite2 # refresh on tuesday
+#  database: procore_lite3 # refresh on wednesday
+#  database: procore_lite4 # refresh on thursday
+#  database: procore_lite5 # refresh on friday
+  host: 192.168.41.240 # In P4 Office
+#  host: localhost # Out Of Office
+#  port: 9999      # Out Of Office
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+test: &test
+  <<: *login
+#  database: procore_development
+  database: procore_test_seed
+  host: localhost
