@@ -19,4 +19,7 @@
 .idea
 *.DS_Store
 *.swp
+
+# Client Build
 client/node_modules
+app/assets/javascripts/generated
