@@ -16,12 +16,20 @@ class ApiClient
     get(url: "/companies")
   end
 
+  def project(company_id:, project_id:)
+    get(url: "/projects/#{project_id}", query: { company_id: company_id })
+  end
+
   def projects(company_id:)
     get(url: "/projects", query: { company_id: company_id })
   end
 
   def users(project_id:)
     get(url: "/projects/#{project_id}/users")
+  end
+
+  def cost_code(project_id:, cost_code_id:)
+    get(url: "/cost_codes/#{cost_code_id}", query: { project_id: project_id })
   end
 
   def cost_codes(project_id:)
@@ -55,14 +63,14 @@ class ApiClient
 
   def headers
     {
-      "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4NzQyNzR9.AXWrrzk17T9-JmScy-nifhDA56YsQgXE0DdhDUgNEJJEuh2eZiKSn04TvutPk3vhM6mN7VXBQyXolp_0jMdolUG3ACUUxo-szIIwjlkNRDCBzgjfeDFp7lIn617wu7FG5WwtIuFtBGHYJg1yUl0c9E-1FtHkUWoZFsBnOBJmZMvdzu2M",
+      "Authorization" => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4ODE4NDR9.AUHHsjvaTWN9lIYlHRH0iD3KX9tweORqIuqHLeUUBWvZ3v5zsIytDDWGvSgNe09PVWJ6MwtTL1Gn6JsHdMhiDIuwANRDcwOa3-X2bEhQpjw7sPPdIldF7QGXblMp4PMF7l2noxBMnPD3GX51Ha1Zgt2vVCa5xyMnFnxc3GHyJye7CFEv",
       "Content-Type" => "application/json",
       "Accepts" => "application/json",
     }
   end
 
   def token
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4NzQyNzR9.AXWrrzk17T9-JmScy-nifhDA56YsQgXE0DdhDUgNEJJEuh2eZiKSn04TvutPk3vhM6mN7VXBQyXolp_0jMdolUG3ACUUxo-szIIwjlkNRDCBzgjfeDFp7lIn617wu7FG5WwtIuFtBGHYJg1yUl0c9E-1FtHkUWoZFsBnOBJmZMvdzu2M"
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJ1c2VyIjp7ImlkIjo5NTg5MTl9LCJleHAiOjE0ODQ4ODE4NDR9.AUHHsjvaTWN9lIYlHRH0iD3KX9tweORqIuqHLeUUBWvZ3v5zsIytDDWGvSgNe09PVWJ6MwtTL1Gn6JsHdMhiDIuwANRDcwOa3-X2bEhQpjw7sPPdIldF7QGXblMp4PMF7l2noxBMnPD3GX51Ha1Zgt2vVCa5xyMnFnxc3GHyJye7CFEv"
     # if access_token.expired?
     #   self.access_token = access_token.refresh!
     # else
