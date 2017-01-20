@@ -186,11 +186,8 @@
   vertical-align: middle;
   width: 17px;
 }
-.Select-clear-zone:hover {
-  color: #D0021B;
-}
 .Select-clear {
-  display: inline-block;
+  display: none;
   font-size: 18px;
   line-height: 1;
 }
@@ -198,8 +195,7 @@
   width: 17px;
 }
 .Select-arrow-zone {
-  cursor: pointer;
-  display: table-cell;
+  display: none;
   position: relative;
   text-align: center;
   vertical-align: middle;
