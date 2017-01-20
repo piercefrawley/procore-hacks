@@ -28,6 +28,11 @@ export default class Detail extends Component {
           <HiddenButton onClick={click} text={project} type="project"/>
         </div>
         <Chart />
+        <div className="detail-bottom-view">
+          <div className="costcode-label"></div>
+          <div className="project-label"></div>
+          <div className="comparison-label"></div>
+        </div>
       </div>
     )
   }
