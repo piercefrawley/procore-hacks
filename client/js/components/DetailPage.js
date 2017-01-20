@@ -12,11 +12,11 @@ export default class Detail extends Component {
   }
 
   componentDidMount() {
+    this.props.actions.fetchStatsData();
     this.loaded = setTimeout(this.load.bind(this), 4000);
   }
 
   load() {
-    console.log(this);
     this.setState({
       isLoading: false
     })

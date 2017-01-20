@@ -46,7 +46,7 @@ class Base extends Component {
         }
         {
           tab === 'detail' && (
-            <DetailPage {...{ tab }} />
+            <DetailPage { ...this.props } />
           )
         }
       </div>
