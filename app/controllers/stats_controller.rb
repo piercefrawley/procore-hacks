@@ -52,7 +52,6 @@ class StatsController < ApplicationController
       date_trunc('month', line_items.updated_at)
     FROM projects
       INNER JOIN line_items ON line_items.project_id = projects.id
-          AND line_items.updated_at >= (now() - interval '1 year')
           AND line_items.unit_cost IS NOT NULL AND line_items.unit_cost <> 0
       INNER JOIN cost_codes ON cost_codes.id = line_items.cost_code_id
     WHERE
@@ -60,6 +59,8 @@ class StatsController < ApplicationController
       AND projects.active
       AND projects.state_code = '#{region}'
       AND replace(cost_codes.sortable_code, ' ', '') = '#{sortable_cost_code}'
+      AND line_items.updated_at >= '2016-01-01 00:00:00'
+      AND line_items.updated_at < '2017-01-01 00:00:00'
     GROUP BY date_trunc('month', line_items.updated_at)
     ORDER BY date_trunc('month', line_items.updated_at) ASC"
   end
