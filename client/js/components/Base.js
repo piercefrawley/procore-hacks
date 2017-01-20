@@ -20,28 +20,34 @@ class Base extends Component {
       <div className="flex-container">
         {
           tab === 'project' && (
-            <Select
-              name="projectSelect"
-              searchable={true}
-              value={project}
-              labelKey="name"
-              valueKey="id"
-              options={projects}
-              onChange={onChangeProject}
-            />
+            <div className="project-view">
+              <p>Yo, What's your project?</p>
+              <Select
+                name="projectSelect"
+                searchable={true}
+                value={project}
+                labelKey="name"
+                valueKey="id"
+                options={projects}
+                onChange={onChangeProject}
+              />
+            </div>
           )
         }
         {
           tab === 'costCode' && (
-            <Select
-              name="costCodeSelect"
-              searchable={true}
-              value={costCode}
-              labelKey="name"
-              valueKey="id"
-              options={costCodes}
-              onChange={onChangeCostCode}
-            />
+            <div className="costcode-view">
+              <p>Which cost code do you want?</p>
+              <Select
+                name="costCodeSelect"
+                searchable={true}
+                value={costCode}
+                labelKey="name"
+                valueKey="id"
+                options={costCodes}
+                onChange={onChangeCostCode}
+              />
+            </div>
           )
         }
         {

@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'OpenSans-Light';
+  src:url('OpenSans-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: font-url('Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /**
  * React Select
  * ============
@@ -8,6 +22,7 @@
 .Select {
   position: relative;
 }
+
 .Select,
 .Select div,
 .Select input,
@@ -28,20 +43,21 @@
   opacity: 0.35;
 }
 .Select-control {
-  background-color: #fff;
+  background-color: #0D357B;
   border-color: #d9d9d9 #ccc #b3b3b3;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   color: #333;
   cursor: default;
   display: table;
   border-spacing: 0;
   border-collapse: separate;
-  height: 80px;
+  height: 120px;
   outline: none;
   overflow: hidden;
   position: relative;
   width: 100%;
+  z-index: 2;
 }
 .Select-control:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -53,9 +69,8 @@
   cursor: text;
 }
 .is-open > .Select-control {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  background: #fff;
+  border: 2px solid #ccc;
+  background-color: #0D357B;
   border-color: #b3b3b3 #ccc #d9d9d9;
 }
 .is-open > .Select-control > .Select-arrow {
@@ -104,9 +119,10 @@
   text-decoration: underline;
 }
 .Select-input {
-  height: 34px;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: 120px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
   vertical-align: middle;
 }
 .Select-input > input {
@@ -116,8 +132,9 @@
   box-shadow: none;
   cursor: default;
   display: inline-block;
-  font-family: inherit;
-  font-size: 50px;
+  font-family: 'OpenSans-Light';
+  color: #fff;
+  font-size: 52pt;
   margin: 0;
   outline: none;
   line-height: 14px;
@@ -229,9 +246,10 @@
   }
 }
 .Select-menu-outer {
+  padding-top: 5px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
-  background-color: #fff;
+  background-color: #32599c;
   border: 1px solid #ccc;
   border-top-color: #e6e6e6;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -239,9 +257,12 @@
   margin-top: -1px;
   max-height: 200px;
   position: absolute;
-  top: 100%;
+  top: 100% - 5;
   width: 100%;
   z-index: 1;
+  font-family: 'Lato-Regular';
+  font-size: 30pt;
+  color: #fff;
   -webkit-overflow-scrolling: touch;
 }
 .Select-menu {
@@ -251,11 +272,9 @@
 .Select-option {
   box-sizing: border-box;
   background-color: #fff;
-  color: #666666;
   cursor: pointer;
   display: block;
   padding: 8px 10px;
-  font-size:25px;
 }
 .Select-option:last-child {
   border-bottom-right-radius: 4px;
@@ -271,7 +290,7 @@
   background-color: #ebf5ff;
   /* Fallback color for IE 8 */
   background-color: rgba(0, 126, 255, 0.08);
-  color: #333;
+  color: #fff;
 }
 .Select-option.is-disabled {
   color: #cccccc;
