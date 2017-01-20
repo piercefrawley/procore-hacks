@@ -1,4 +1,12 @@
+@font-face {
+  font-family: 'Lato-Regular';
+  src: font-url('Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #loader-wrapper {
+  overflow: hidden;
   height: 100%;
   left: 0;
   position: fixed;
@@ -17,6 +25,13 @@
   margin: auto;
   width: 100%;
   z-index: 1001;
+
+  .loading-text {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-family: "Lato-Regular"
+  }
 }
 
 

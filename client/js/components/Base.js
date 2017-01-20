@@ -35,7 +35,7 @@ class Base extends Component {
                 }}
               />
               {project.id && (
-                <p>
+                <p className="notification">
                   <span>Dope, your project's in </span>
                   <span style={{ color: '#ffd56e' }}>California</span>
                 </p>
