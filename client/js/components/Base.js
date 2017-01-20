@@ -38,6 +38,7 @@ class Base extends Component {
           <div className="titleloader-section titlesection-left"></div>
           <div className="titleloader-section titlesection-right"></div>
         </div>
+        <img id="titleloader" src="/assets/truckloader.gif" alt="Loading" style={{visibility: "hidden"}}/>
         {
           tab === 'project' && (
             <div className="project-view">
