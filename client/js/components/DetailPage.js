@@ -27,6 +27,11 @@ export default class Detail extends Component {
           for&nbsp;<span className="area-span">{ area }</span>&nbsp;vs.
           <HiddenButton onClick={click} text={project} type="project"/>
         </div>
+        <div className="detail-bottom-view">
+          <div className="costcode-label"></div>
+          <div className="project-label"></div>
+          <div className="comparison-label"></div>
+        </div>
       </div>
     )
   }
