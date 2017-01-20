@@ -94,7 +94,7 @@ const fetchStatsData = () => async (dispatch, getState) => {
           { "date": "2016-12-2", "price": 2043.20 },
         ]
       });
-    }, 5000);
+    }, 1000);
   });
 
   fetch.then(

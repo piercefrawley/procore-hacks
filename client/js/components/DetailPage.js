@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import TruckSpinner from './TruckLoader'
-import HiddenButton from './HiddenButton'
+import React, { Component } from 'react';
+import Chart from './Chart';
+import TruckSpinner from './TruckLoader';
+import HiddenButton from './HiddenButton';
 import cx from 'classnames';
 
 export default class Detail extends Component {
@@ -27,6 +27,7 @@ export default class Detail extends Component {
           for&nbsp;<span className="area-span">{ area }</span>&nbsp;vs.
           <HiddenButton onClick={click} text={project} type="project"/>
         </div>
+        <Chart />
       </div>
     )
   }
