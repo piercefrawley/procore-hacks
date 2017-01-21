@@ -12,13 +12,22 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { app: { costCode, loading } } = this.props;
+    const {
+      actions: { transition },
+      app: { costCode, loading, stats },
+    } = this.props;
+
     const DetailClass = cx({ 'flex-container': true, 'loaded': !loading });
-    const material = "Structure Metals";
-    const project = "P7 Parking Garage";
+    const selected = stats._description || { cost_code: {}, project: {} };
+    const cc = selected.cost_code || {};
+    const project = selected.project || {};
+
+    const material = costCode.name || "Structure Metals";
+    const proj = project.name || "P7 Parking Garage";
     const area = "California";
-    const areaprice = 160;
-    const projectprice = 210;
+    const areaprice = parseInt(cc.last_price) || 160;
+    const projectprice = parseInt(project.last_price) || 210;
+
     const diff = areaprice - projectprice;
     const diffClass = cx({ 'save': diff >= 0, 'nosave': diff < 0 });
     const diffabs = Math.abs(diff);
@@ -27,12 +36,12 @@ export default class Detail extends Component {
 
     return (
       <div className={DetailClass}>
-        <TruckLoader costCode={costCode} />
+        <TruckLoader costCode={this.props.app.costCode} />
         <div className="flyer">
           Average price of
-          <HiddenButton onClick={click} text={material} type="item"/>
+          <HiddenButton onClick={() => transition('costCode')} text={material} type="item"/>
           for&nbsp;<span className="area-span">{ area }</span>&nbsp;vs.
-          <HiddenButton onClick={click} text={project} type="project"/>
+          <HiddenButton onClick={() => transition('project')} text={proj} type="project"/>
         </div>
         <div className="costcode-chart">
         <Chart { ...this.props }/>
@@ -51,7 +60,7 @@ export default class Detail extends Component {
                 <img className="label-icon" src="/assets/Projectflag.png" alt="Project" height="99" width="76"/>
                 <div className="label-text">
                   <div className="price">{"$"+projectprice}</div>
-                  <div className="project">{project}</div>
+                  <div className="project">{proj}</div>
                 </div>
             </div>
             <div className="diff-label">

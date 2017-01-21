@@ -42,7 +42,7 @@ export default class Chart extends Component {
 
     const yAxis = {
       title: {
-        text: 'USD per ton',
+        text: 'USD',
         style: {
           color: '#ffffff',
           fontFamily: 'Lato-Regular',
@@ -75,6 +75,7 @@ export default class Chart extends Component {
         backgroundColor: '#0D357B',
         width: '1250',
         height: '400',
+        marginTop: '50',
       },
       credits: {
         enabled: false,

@@ -74,6 +74,12 @@ const { actions, ...module } = createModule({
       reducer: (state, { payload }) => {
         return state.setIn(['session', 'loading'], payload)
       },
+    },
+    transition: {
+      middleware: [],
+      reducer: (state, { payload }) => {
+        return state.setIn(['session', 'tab'], payload)
+      },
     }
   },
 });

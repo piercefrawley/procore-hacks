@@ -76,6 +76,7 @@ class Base extends Component {
                 value={costCode}
                 labelKey="name"
                 valueKey="id"
+                optionRenderer={({full_code, name}) => `${full_code} ${name}`}
                 options={costCodes}
                 onChange={onChangeCostCode}
               />
