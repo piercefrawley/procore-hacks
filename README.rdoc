@@ -1,6 +1,6 @@
 == Corefax (Procore Hacks 2017)
 
-Corefax is a project dedicated to comparing the average regional price per unit of any given resource (steel, concrete, etc) against the price paid by a given project over the course of a year.
+Corefax is a tool for comparing the average regional price per unit of any given resource (steel, concrete, etc) against the price paid by a given project over the course of a year.
 
 https://cloud.githubusercontent.com/assets/3795505/22808656/0ca4f220-eee2-11e6-80ef-44b0f0ae0636.png
 
