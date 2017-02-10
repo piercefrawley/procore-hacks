@@ -1,28 +1,6 @@
-== README
+== Corefax (Procore Hacks 2017)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Corefax is a project dedicated to comparing the average regional price per unit of any given resource (steel, concrete, etc) against the price paid by a given project over the course of a year.
 
-Things you may want to cover:
+https://cloud.githubusercontent.com/assets/3795505/22808656/0ca4f220-eee2-11e6-80ef-44b0f0ae0636.png
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
